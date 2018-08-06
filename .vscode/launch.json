@@ -1,14 +1,120 @@
 {
-    // Use IntelliSense to learn about possible attributes.
-    // Hover to view descriptions of existing attributes.
-    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
         {
             "type": "chrome",
             "request": "launch",
-            "name": "Launch Chrome against localhost",
-            "url": "http://localhost:8080",
+            "name": "Launch Chromium",
+            "url": "http://localhost:4200",
+            "runtimeExecutable": "/usr/bin/chromium",
+            "runtimeArgs": ["--remote-debugging-port=9222", "--user-data-dir=${workspaceFolder}/chromium-tmp"],
+            "webRoot": "${workspaceFolder}"
+        },
+        {
+            "type": "chrome",
+            "request": "attach",
+            "name": "Attach to Chrome",
+            "port": 9222,
+            "webRoot": "${workspaceFolder}"
+        },
+        {
+            "name": "CherryPy local",
+            "type": "python",
+            "request": "launch",
+            //"console" : "integratedTerminal",
+            "stopOnEntry": false,
+            //w 1.20 przestało działać "${config:python.pythonPath}"
+            //https://github.com/Microsoft/vscode/issues/43303
+            "pythonPath": "${workspaceFolder}/app/venv/bin/python",
+            "program": "${workspaceFolder}/app/appserver/main.py",
+            "cwd": "${workspaceFolder}/app/",
+            "env": {},
+            "envFile": "${workspaceFolder}/.env",
+            // RedirectOutput nie wyrzuca kompunikatów z cherrypy na stderr
+            // na konsole jezeli jest import cherrypy
+            "debugOptions": [
+                "WaitOnAbnormalExit",
+                "WaitOnNormalExit",
+                "RedirectOutput"
+            ]
+        },
+        {
+            "name": "Python: Attach",
+            "type": "python",
+            "request": "attach",
+            "localRoot": "${workspaceFolder}",
+            "remoteRoot": "/srv/ixmed",
+            "port": 7990,
+            "secret": "ixmed",
+            "host": "ixmed1"
+        },
+        {
+            "name": "Python: Terminal (integrated)",
+            "type": "python",
+            "request": "launch",
+            "stopOnEntry": false,
+            //w 1.20 przestało działać "${config:python.pythonPath}"
+            //https://github.com/Microsoft/vscode/issues/43303
+            "pythonPath": "${workspaceFolder}/app/venv/bin/python",
+            "program": "${file}",
+            "cwd": "",
+            "console": "integratedTerminal",
+            "env": {},
+            "envFile": "${workspaceFolder}/.env",
+            "debugOptions": [
+                "WaitOnAbnormalExit",
+                "WaitOnNormalExit"
+            ]
+        },
+        {
+            "name": "Python: Terminal (external)",
+            "type": "python",
+            "request": "launch",
+            "stopOnEntry": true,
+            //w 1.20 przestało działać "${config:python.pythonPath}"
+            //https://github.com/Microsoft/vscode/issues/43303
+            "pythonPath": "${workspaceFolder}/app/venv/bin/python",
+            "program": "${file}",
+            "cwd": "",
+            "console": "externalTerminal",
+            "env": {},
+            "envFile": "${workspaceFolder}/.env",
+            "debugOptions": [
+                "WaitOnAbnormalExit",
+                "WaitOnNormalExit"
+            ]
+        },
+        {
+            "name": "Python: Module",
+            "type": "python",
+            "request": "launch",
+            "stopOnEntry": true,
+            "pythonPath": "${config:python.pythonPath}",
+            "module": "module.name",
+            "cwd": "${workspaceFolder}",
+            "env": {},
+            "envFile": "${workspaceFolder}/.env",
+            "debugOptions": [
+                "WaitOnAbnormalExit",
+                "WaitOnNormalExit",
+                "RedirectOutput"
+            ]
+        },
+        {
+            "name": "Attach Jasmine",
+            "type": "chrome",
+            "request": "attach",
+            "port": 9222,
+            "sourceMaps": true,
+            "webRoot": "${workspaceFolder}"
+        },
+        {
+            "name": "ng test",
+            "type": "chrome",
+            "request": "launch",
+            "runtimeExecutable": "/usr/bin/chromium",
+            "url": "http://localhost:9876/debug.html",
+            "runtimeArgs": ["--remote-debugging-port=9222", "--user-data-dir=${workspaceFolder}/chromium-tmp"],
             "webRoot": "${workspaceFolder}"
         }
     ]
