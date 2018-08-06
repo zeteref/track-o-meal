@@ -64,6 +64,15 @@ export class MealService {
     );
   }
 
+  searchMeal(term: string): Observable<Meal[]> {
+    if (!term.trim()) { return of([]); }
+
+    return this.http.get<Meal[]>(`${this.mealUrl}/?name=${term}`).pipe(
+      tap(_ => this.log(`found meals matching "${term}"`)),
+      catchError(this.handleError<Meal[]>('searchMeal'))
+    );
+  }
+
   private log(message: string) {
     this.messageService.add(`MealService: ${message}`);
   }

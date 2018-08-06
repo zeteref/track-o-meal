@@ -11,6 +11,7 @@ import { InMemoryDataService } from './in-memory-data.service';
 import { MealsComponent } from './meals/meals.component';
 import { MealDetailComponent } from './meal-detail/meal-detail.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { MealSearchComponent } from './meal-search/meal-search.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     MealsComponent,
     MealDetailComponent,
     MessagesComponent,
-    DashboardComponent
+    DashboardComponent,
+    MealSearchComponent
   ],
   imports: [
     BrowserModule,
