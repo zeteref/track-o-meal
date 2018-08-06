@@ -15,5 +15,11 @@ export class MealService {
     this.messageService.add('MealService: fetched Meals');
     return of(MEALS);
   }
+
+  getMeal(id: number): Observable<Meal> {
+    this.messageService.add(`MealService: fetched meal id=${id}`);
+
+    return of(MEALS.find(meal => meal.id === id));
+  }
 }
 

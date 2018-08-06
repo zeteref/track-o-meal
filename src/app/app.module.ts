@@ -6,17 +6,21 @@ import { AppComponent } from './app.component';
 import { MealsComponent } from './meals/meals.component';
 import { MealDetailComponent } from './meal-detail/meal-detail.component';
 import { MessagesComponent } from './messages/messages.component';
+import { AppRoutingModule } from './/app-routing.module';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MealsComponent,
     MealDetailComponent,
-    MessagesComponent
+    MessagesComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

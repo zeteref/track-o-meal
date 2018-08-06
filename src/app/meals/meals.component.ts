@@ -10,16 +10,11 @@ import { MealService } from '../meal.service';
 export class MealsComponent implements OnInit {
 
   meals: Meal[];
-  selectedMeal: Meal;
 
   constructor(private mealService: MealService) { }
 
   ngOnInit() {
       this.getMeals();
-  }
-
-  onSelect(meal: Meal): void {
-    this.selectedMeal = meal;
   }
 
   getMeals(): void {

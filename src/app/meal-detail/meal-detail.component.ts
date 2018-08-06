@@ -1,5 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
+
 import { Meal } from '../models/meal';
+import { MealService } from '../meal.service';
 
 @Component({
   selector: 'app-meal-detail',
@@ -11,9 +15,23 @@ export class MealDetailComponent implements OnInit {
   @Input()
   meal: Meal;
 
-  constructor() { }
+  constructor(
+    private route: ActivatedRoute,
+    private location: Location,
+    private mealService: MealService
+  ) { }
 
   ngOnInit() {
+    this.getMeal();
   }
 
+  getMeal(): void {
+    const id = +this.route.snapshot.paramMap.get('id');
+    this.mealService.getMeal(id)
+      .subscribe(meal => this.meal = meal);
+  }
+
+  goBack(): void {
+    this.location.back();
+  }
 }
