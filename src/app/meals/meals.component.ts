@@ -17,6 +17,20 @@ export class MealsComponent implements OnInit {
       this.getMeals();
   }
 
+  add(name: string) {
+    name = name.trim();
+    if (!name) { return; }
+    this.mealService.addMeal({ name } as Meal)
+      .subscribe(meal => {
+        this.meals.push(meal);
+      });
+  }
+
+  delete(meal: Meal) {
+    this.meals = this.meals.filter(m => m !== meal);
+    this.mealService.deleteMeal(meal).subscribe();
+  }
+
   getMeals(): void {
     this.mealService.getMeals()
       .subscribe((meals => this.meals = meals));

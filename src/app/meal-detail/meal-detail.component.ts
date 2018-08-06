@@ -31,6 +31,11 @@ export class MealDetailComponent implements OnInit {
       .subscribe(meal => this.meal = meal);
   }
 
+  save(): void {
+    this.mealService.updateMeal(this.meal)
+      .subscribe(() => this.goBack());
+  }
+
   goBack(): void {
     this.location.back();
   }
