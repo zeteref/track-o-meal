@@ -27,9 +27,6 @@ import { MealSearchComponent } from './meal-search/meal-search.component';
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
-    HttpClientInMemoryWebApiModule.forRoot(
-      InMemoryDataService, { dataEncapsulation: false}
-    )
   ],
   providers: [],
   bootstrap: [AppComponent]

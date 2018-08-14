@@ -17,7 +17,7 @@ const httpOptions = {
 })
 export class MealService {
 
-  private mealUrl = 'api/meals';
+  private mealUrl = 'http://localhost:8080/meals';
 
   constructor(
     private messageService: MessageService,
