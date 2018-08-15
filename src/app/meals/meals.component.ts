@@ -33,7 +33,11 @@ export class MealsComponent implements OnInit {
 
   getMeals(): void {
     this.mealService.getMeals()
-      .subscribe((meals => this.meals = meals));
+      .subscribe(
+        (meals) => { 
+          this.meals = meals
+        }
+      );
   }
 
 }

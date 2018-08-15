@@ -3,7 +3,7 @@ import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 
-import { Meal } from './models/meal';
+import { Meal, MealIngredient } from './models/meal';
 import { MEALS } from './mock-meals';
 import { MessageService } from './message.service';
 import { errorHandler } from '@angular/platform-browser/src/browser';
@@ -55,6 +55,14 @@ export class MealService {
       tap(_ => this.log(`fetched meal id=${id}`)),
       catchError(this.handleError<Meal>(`getMeal id=${id}`))
     );
+  }
+
+  getMealIngredients(id: number): Observable<MealIngredient[]> {
+    const url = `${this.mealUrl}/${id}/ingredients`;
+    return this.http.get<MealIngredient[]>(url).pipe(
+      tap(_ => this.log(`fetched meal ingredients for meal id=${id}`)),
+      catchError(this.handleError<MealIngredient[]>(`get MealIngredients for meal id=${id}`))
+    )
   }
 
   updateMeal(meal: Meal) {

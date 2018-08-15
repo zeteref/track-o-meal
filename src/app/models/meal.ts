@@ -1,7 +1,16 @@
+import { Ingredient } from "./ingredient";
+
 export class Meal {
     id: number;
     name: string;
     date: Date;
+}
+
+export class MealIngredient {
+    id: number;
+    meal_id: number;
+    ingredient_id: number;
+    ingredient: Ingredient;
 }
 
 export function getDate(args: {
