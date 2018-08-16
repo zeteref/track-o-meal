@@ -26,7 +26,7 @@ export class MealService {
 
   addMeal(meal: Meal): Observable<Meal> {
     return this.http.post<Meal>(this.mealUrl, meal, httpOptions).pipe(
-      tap((meal: Meal) => this.log(`added meal with id=${meal.id}`)),
+      tap((_: Meal) => this.log(`added meal with id=${_.id}`)),
       catchError(this.handleError<Meal>('addHero'))
     );
   }
@@ -62,7 +62,7 @@ export class MealService {
     return this.http.get<MealIngredient[]>(url).pipe(
       tap(_ => this.log(`fetched meal ingredients for meal id=${id}`)),
       catchError(this.handleError<MealIngredient[]>(`get MealIngredients for meal id=${id}`))
-    )
+    );
   }
 
   updateMeal(meal: Meal) {

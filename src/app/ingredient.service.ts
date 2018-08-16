@@ -15,7 +15,7 @@ const httpOptions = {
 })
 export class IngredientService {
 
-  private url = 'http://localhost:8080/ingredients'
+  private url = 'http://localhost:8080/ingredients';
 
   constructor(
     private messageService: MessageService,
