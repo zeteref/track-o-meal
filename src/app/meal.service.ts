@@ -75,7 +75,9 @@ export class MealService {
   searchMeal(term: string): Observable<Meal[]> {
     if (!term.trim()) { return of([]); }
 
-    return this.http.get<Meal[]>(`${this.mealUrl}/?name=${term}`).pipe(
+    const url = `http://localhost:8080/search?q=meals&name=${term}`;
+
+    return this.http.get<Meal[]>(url).pipe(
       tap(_ => this.log(`found meals matching "${term}"`)),
       catchError(this.handleError<Meal[]>('searchMeal'))
     );
