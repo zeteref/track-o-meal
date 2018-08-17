@@ -22,8 +22,7 @@ export class IngredientService {
     private http: HttpClient
   ) { }
 
-  getIngredients(id: number): Observable<Ingredient[]> {
-    const url = `${this.url}/${id}`;
+  getIngredients(): Observable<Ingredient[]> {
 
     return this.http.get<Ingredient[]>(this.url)
       .pipe(

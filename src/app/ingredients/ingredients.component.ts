@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { MealService } from '../meal.service';
+import { Meal } from '../models/meal';
+import { IngredientService } from '../ingredient.service';
+import { Ingredient } from '../models/ingredient';
 
 @Component({
   selector: 'app-ingredients',
@@ -7,9 +11,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IngredientsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private ingredientService: IngredientService) { }
+
+  ingredients: Ingredient[];
 
   ngOnInit() {
+    this.getIngredients();
   }
 
+  getIngredients(): void {
+    this.ingredientService.getIngredients()
+      .subscribe(ingredients => this.ingredients = ingredients);
+  }
 }

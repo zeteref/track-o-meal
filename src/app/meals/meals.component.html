@@ -1,15 +1,14 @@
-<h2>Last meals</h2>
-<div>
-  <label>Meal name:
-    <input #mealName />
-  </label>
-  <button (click)="add(mealName.value); mealName.value=''">add</button>
+<div class="row">
+  <div class="col-sm-5">
+    <h2>Last meals</h2>
+  </div>
 </div>
-<ul class="meals">
-  <li *ngFor='let meal of meals'>
-    <a routerLink='/meals/{{ meal.id }}'>
-      <span class="badge">{{ meal.id }}</span>{{ meal.name }}
-    </a>
-    <button (click)="delete(meal)">x</button>
-  </li>
-</ul>
+<div class="row">
+  <div class="col-sm-5">
+    <div class="list-group">
+      <a href="#" class="list-group-item">First item</a>
+      <a href="#" class="list-group-item">Second item</a>
+      <a href="#" class="list-group-item">Third item</a>
+    </div>
+  </div>
+</div>
