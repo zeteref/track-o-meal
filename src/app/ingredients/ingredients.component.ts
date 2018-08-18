@@ -14,6 +14,7 @@ export class IngredientsComponent implements OnInit {
   constructor(private ingredientService: IngredientService) { }
 
   ingredients: Ingredient[];
+  selectedIngredient: Ingredient;
 
   ngOnInit() {
     this.getIngredients();
@@ -23,4 +24,9 @@ export class IngredientsComponent implements OnInit {
     this.ingredientService.getIngredients()
       .subscribe(ingredients => this.ingredients = ingredients);
   }
+
+  selectIngredient(ingredient: Ingredient): void {
+    this.selectedIngredient = ingredient;
+  }
+
 }

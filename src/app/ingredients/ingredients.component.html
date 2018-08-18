@@ -1,28 +1,36 @@
 <div class="row">
+  <div class="col-sm-4">
+    <div class="input-group">
+      <input class="form-control" id="myInput" type="text" placeholder="Search..">
+      <div class="input-group-btn">
+          <span class="btn btn-default">
+            <i class="glyphicon glyphicon-search"></i>
+          </span>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-4 text-right">
+    <a class="btn btn-info">Add ingredient</a>
+  </div>
+</div>
+<div class="row">
   <div class="col-sm-8">
+  <br>
   <table class="table table-hover">
       <thead>
         <tr>
-          <th>Firstname</th>
-          <th>Lastname</th>
-          <th>Email</th>
+          <th>Name</th>
+          <th>Calories</th>
+          <th>Fats</th>
         </tr>
       </thead>
-      <tbody>
-        <tr>
-          <td>John</td>
-          <td>Doe</td>
-          <td>john@example.com</td>
-        </tr>
-        <tr data-toggle="collapse" data-target="#demo">
-          <td>Mary</td>
-          <td>Moe</td>
-          <td>mary@example.com</td>
-        </tr>
-        <tr>
-          <td>July</td>
-          <td>Dooley</td>
-          <td>july@example.com</td>
+      <tbody id="myTable">
+        <tr *ngFor="let ingredient of ingredients" 
+            [class.active]="selectedIngredient == ingredient"
+            (click)="selectIngredient(ingredient)">
+          <td>{{ ingredient.name }}</td>
+          <td></td>
+          <td></td>
         </tr>
       </tbody>
     </table>
@@ -31,11 +39,16 @@
       <li class="next"><a href="#">Next</a></li>
     </ul>
   </div>
-  <div class="col-sm-4">
+  <div class="col-sm-4" *ngIf="selectedIngredient">
     <div id="demo" class="panel panel-default panel-info">
-      <div class="panel-heading">Ingredient X</div>
+      <div class="panel-heading">
+        {{ selectedIngredient.name }}
+      </div>
       <div class="panel-body">
-        Some description
+        <div class="form-group form-inline">
+          <label for="ingredient-name">Name: </label>
+          <input type="text" class="form-control" [(ngModel)]="selectedIngredient.name" id="ingredient-name">
+        </div>
       </div>
     </div>
   </div>
