@@ -45,10 +45,14 @@
         {{ selectedIngredient.name }}
       </div>
       <div class="panel-body">
-        <div class="form-group form-inline">
-          <label for="ingredient-name">Name: </label>
-          <input type="text" class="form-control" [(ngModel)]="selectedIngredient.name" id="ingredient-name">
-        </div>
+          <form class="form-horizontal">
+            <div class="form-group">
+              <label class="control-label col-sm-2" for="ingredient-name">Name: </label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="ingredient-name">
+              </div>
+            </div>
+          </form>
       </div>
     </div>
   </div>
