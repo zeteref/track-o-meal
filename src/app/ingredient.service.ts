@@ -38,7 +38,7 @@ export class IngredientService {
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.log(error);
-      this.log(`${operation} feiled: ${error.message}`);
+      this.log(`${operation} failed: ${error.message}`);
       return of(result as T);
     };
   }

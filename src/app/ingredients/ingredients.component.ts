@@ -3,6 +3,7 @@ import { MealService } from '../meal.service';
 import { Meal } from '../models/meal';
 import { IngredientService } from '../ingredient.service';
 import { Ingredient } from '../models/ingredient';
+import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-ingredients',
@@ -11,10 +12,17 @@ import { Ingredient } from '../models/ingredient';
 })
 export class IngredientsComponent implements OnInit {
 
-  constructor(private ingredientService: IngredientService) { }
+  constructor(
+    private ingredientService: IngredientService,
+    private fb: FormBuilder
+  ) { }
 
   ingredients: Ingredient[];
   selectedIngredient: Ingredient;
+
+  form: FormGroup = this.fb.group({
+    calories: '100',
+  });
 
   ngOnInit() {
     this.getIngredients();
@@ -25,8 +33,7 @@ export class IngredientsComponent implements OnInit {
       .subscribe(ingredients => this.ingredients = ingredients);
   }
 
-  selectIngredient(ingredient: Ingredient): void {
-    this.selectedIngredient = ingredient;
+  selectIngredient(ing: Ingredient): void {
+    this.selectedIngredient = ing;
   }
-
 }
