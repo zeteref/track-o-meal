@@ -21,8 +21,17 @@ export class IngredientsComponent implements OnInit {
   selectedIngredient: Ingredient;
 
   form: FormGroup = this.fb.group({
-    calories: '100',
+    calories: [''],
+    sugar: [''],
+    protein: [''],
+    fats: [''],
+    carbo: [''],
+    veg_protein: [''],
   });
+
+  formControls(): string[] {
+    return Object.keys(this.form.controls);
+  }
 
   ngOnInit() {
     this.getIngredients();
@@ -35,5 +44,11 @@ export class IngredientsComponent implements OnInit {
 
   selectIngredient(ing: Ingredient): void {
     this.selectedIngredient = ing;
+    Object.keys(this.selectedIngredient).forEach(key => {
+      if (this.formControls().includes(key)) {
+        this.form.get(key).setValue(ing[key]);
+      }
+    });
   }
+
 }
