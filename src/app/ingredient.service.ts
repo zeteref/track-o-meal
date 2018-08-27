@@ -31,6 +31,13 @@ export class IngredientService {
       );
   }
 
+  addIngredient(ing: Ingredient): any {
+    throw new Error("Method not implemented.");
+  }
+  updateIngredient(ing: Ingredient): any {
+    throw new Error("Method not implemented.");
+  }
+
   private log(message: string) {
     this.messageService.add(`IngredientService: ${message}`);
   }

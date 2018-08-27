@@ -12,7 +12,7 @@
         </div>
       </div>
       <div class="col-sm-4 text-right">
-        <a class="btn btn-info">New ingredient</a>
+        <a class="btn btn-info" (click)="newIngredient()">New ingredient</a>
       </div>
     </div>
     <div class="row">
@@ -26,7 +26,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let ingredient of ingredients" 
+            <tr *ngFor="let ingredient of ingredients"
                 [class.active]="selectedIngredient == ingredient"
                 (click)="selectIngredient(ingredient)">
               <td>{{ ingredient.name }}</td>
@@ -46,18 +46,19 @@
     <div class="row">
       <div class="col-sm-12" *ngIf="selectedIngredient">
         <div id="ingredient-details" class="panel panel-default panel-info">
-          <div class="panel-heading">{{ selectedIngredient.name }}</div>
+          <div class="panel-heading" style="min-height: 45px">{{ selectedIngredient.name }}</div>
           <div class="panel-body">
-            <form [formGroup]="form" class="form-horizontal" action="/action_page.php">
+            <form [formGroup]="form" class="form-horizontal" action="/ingredients">
                 <div class="form-group text-right" *ngFor="let ctrl of formControls()">
-                  <label class="control-label col-sm-3" for="inpt_{{ ctrl }}">{{ ctrl }}:</label>
-                  <div class="col-sm-9">
+                  <div class="col-sm-5 text-right">{{ ctrl }}:</div >
+                  <div class="col-sm-7">
                     <input [formControl]="form.get(ctrl)" type="text" class="form-control" id="inpt_{{ ctrl }}" placeholder="">
                   </div>
                 </div>
+                <input type="hidden" [formControl]="form.get('id')">
                 <div class="form-group">
                   <div class="col-sm-12 text-right">
-                    <button type="submit" class="btn btn-default">Submit</button>
+                    <button type="submit" class="btn btn-default" (click)="onSubmit()">Submit</button>
                   </div>
                 </div>
             </form>

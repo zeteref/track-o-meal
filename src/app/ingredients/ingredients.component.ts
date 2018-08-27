@@ -3,7 +3,7 @@ import { MealService } from '../meal.service';
 import { Meal } from '../models/meal';
 import { IngredientService } from '../ingredient.service';
 import { Ingredient } from '../models/ingredient';
-import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-ingredients',
@@ -28,14 +28,19 @@ export class IngredientsComponent implements OnInit {
     fats: [''],
     carbo: [''],
     veg_protein: [''],
+    id: ['']
   });
 
   formControls(): string[] {
-    return Object.keys(this.form.controls);
+    return Object.keys(this.form.controls).filter(x => x !== 'id');
   }
 
   ngOnInit() {
     this.getIngredients();
+    this.form.get('name').valueChanges
+      .subscribe(data  => {
+        this.selectedIngredient.name = data;
+      });
   }
 
   getIngredients(): void {
@@ -50,6 +55,22 @@ export class IngredientsComponent implements OnInit {
         this.form.get(key).setValue(ing[key]);
       }
     });
+    this.form.get('id').setValue(ing.id);
+  }
+
+  onSubmit(): void {
+    const ing: Ingredient = this.form.value;
+    console.log(ing);
+    if (ing.id) {
+      this.ingredientService.updateIngredient(ing).subscribe();
+    } else {
+      this.ingredientService.addIngredient(ing).subscribe();
+    }
+  }
+
+  newIngredient(): void {
+    this.selectIngredient(new Ingredient());
+    Object.keys(this.form.controls).forEach(key => this.form.controls[key].setValue(undefined));
   }
 
 }
