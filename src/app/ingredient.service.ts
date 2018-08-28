@@ -31,11 +31,17 @@ export class IngredientService {
       );
   }
 
-  addIngredient(ing: Ingredient): any {
-    throw new Error("Method not implemented.");
+  addIngredient(ing: Ingredient): Observable<Ingredient> {
+    const params = {};
+    return this.http.post<Ingredient>(this.url, ing)
+      .pipe(
+        catchError(this.handleError('getIngredients', [])),
+        tap((data: Ingredient) => this.log(`added ingredient id = ${data.id}`))
+      );
   }
+
   updateIngredient(ing: Ingredient): any {
-    throw new Error("Method not implemented.");
+    throw new Error('Method not implemented.');
   }
 
   private log(message: string) {
