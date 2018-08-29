@@ -21,18 +21,17 @@
           <thead>
             <tr>
               <th>Name</th>
-              <th>Calories</th>
-              <th>Fats</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let ingredient of ingredients"
-                [class.active]="selectedIngredient == ingredient"
-                (click)="selectIngredient(ingredient)">
-              <td>{{ ingredient.name }}</td>
-              <td></td>
+                [class.active]="selectedIngredient == ingredient">
+              <td (click)="selectIngredient(ingredient)">
+                {{ ingredient.name }}
+              </td>
               <td>
-                    <button type="button" class="btn btn-danger" (click)="deleteIngredient(ingredient)"><span class="glyphicon glyphicon-remove"></span></button>
+                <span (click)="deleteIngredient(ingredient)" class="glyphicon glyphicon-remove"></span>
               </td>
             </tr>
           </tbody>
