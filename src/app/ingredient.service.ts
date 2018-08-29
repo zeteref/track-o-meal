@@ -14,7 +14,6 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class IngredientService {
-
   private url = 'http://localhost:8080/ingredients';
 
   constructor(
@@ -40,9 +39,23 @@ export class IngredientService {
       );
   }
 
-  updateIngredient(ing: Ingredient): any {
-    throw new Error('Method not implemented.');
+  updateIngredient(ing: Ingredient): Observable<Ingredient> {
+    return this.http.put<Ingredient>(this.url, ing)
+      .pipe(
+        catchError(this.handleError('getIngredients', [])),
+        tap((data: Ingredient) => this.log(`updated ingredient id = ${data.id}`))
+      );
   }
+
+
+  deleteIngredient(id: number): Observable<any> {
+    return this.http.delete(`${this.url}/${id}`)
+      .pipe(
+        catchError(this.handleError('getIngredients', [])),
+        tap(() => this.log(`deleted ingredient id = ${id}`))
+      );
+  }
+
 
   private log(message: string) {
     this.messageService.add(`IngredientService: ${message}`);

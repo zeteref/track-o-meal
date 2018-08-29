@@ -58,13 +58,22 @@ export class IngredientsComponent implements OnInit {
     this.form.get('id').setValue(ing.id);
   }
 
+  deleteIngredient(ing: Ingredient): void {
+    this.ingredientService.deleteIngredient(ing.id).subscribe(() => {
+      const idx = this.ingredients.findIndex(i => i.id === ing.id);
+      this.ingredients.splice(idx, 1);
+    });
+  }
+
   onSubmit(): void {
     const ing: Ingredient = this.form.value;
-    console.log(ing);
     if (ing.id) {
-      this.ingredientService.updateIngredient(ing).subscribe();
+      this.ingredientService.updateIngredient(ing).subscribe(() => this.selectedIngredient = undefined);
     } else {
-      this.ingredientService.addIngredient(ing).subscribe();
+      this.ingredientService.addIngredient(ing).subscribe((ret: Ingredient) => {
+        this.ingredients.push(ret);
+        this.selectedIngredient = undefined;
+      });
     }
   }
 

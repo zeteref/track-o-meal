@@ -31,7 +31,9 @@
                 (click)="selectIngredient(ingredient)">
               <td>{{ ingredient.name }}</td>
               <td></td>
-              <td></td>
+              <td>
+                    <button type="button" class="btn btn-danger" (click)="deleteIngredient(ingredient)"><span class="glyphicon glyphicon-remove"></span></button>
+              </td>
             </tr>
           </tbody>
         </table>
