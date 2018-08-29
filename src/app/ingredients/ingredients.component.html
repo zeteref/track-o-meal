@@ -20,16 +20,13 @@
         <table class="table table-hover">
           <thead>
             <tr>
-              <th>Name</th>
-              <th></th>
+              <th *ngFor="let ctrl of formControls()">{{ ctrl }}</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let ingredient of ingredients"
                 [class.active]="selectedIngredient == ingredient">
-              <td (click)="selectIngredient(ingredient)">
-                {{ ingredient.name }}
-              </td>
+              <td *ngFor="let ctrl of formControls()" (click)="selectIngredient(ingredient)">{{ ingredient[ctrl] }}</td>
               <td>
                 <span (click)="deleteIngredient(ingredient)" class="glyphicon glyphicon-remove"></span>
               </td>
