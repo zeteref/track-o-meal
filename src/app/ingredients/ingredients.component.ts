@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MealService } from '../meal.service';
 import { Meal } from '../models/meal';
 import { IngredientService } from '../ingredient.service';
-import { Ingredient } from '../models/ingredient';
+import { Ingredient, get_columns } from '../models/ingredient';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { IngredientListComponent } from '../ingredients-list/ingredient-list-component';
 
@@ -15,6 +15,7 @@ export class IngredientsComponent implements OnInit {
 
   @ViewChild('ingredientsSearch')
   ingredientsSearch: IngredientListComponent;
+  columns = get_columns();
 
   constructor(
     private ingredientService: IngredientService,

@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter, Input, ViewChild} from '@angular/core';
 import { IngredientService } from '../ingredient.service';
 import { FormBuilder } from '@angular/forms';
-import { Ingredient } from '../models/ingredient';
+import { Ingredient, get_columns } from '../models/ingredient';
 import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 
@@ -21,15 +21,7 @@ export class IngredientListComponent implements OnInit {
     private fb: FormBuilder
   ) { }
 
-  columns = [
-    new Column('name', 'Name'),
-    new Column('calories', 'Calories'),
-    new Column('protein', 'Protein'),
-    new Column('veg_protein', 'Veg. P.'),
-    new Column('carbo', 'Carbo'),
-    new Column('sugar', 'Sugar'),
-    new Column('fats', 'Fats'),
-  ];
+  columns = get_columns();
 
   selectedIngredient: Ingredient;
   searchTerms = new Subject<string>();

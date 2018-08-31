@@ -17,11 +17,11 @@
           <div class="card-header" style="min-height: 45px">{{ selectedIngredient.name }}</div>
           <div class="card-body">
             <form [formGroup]="form" class="form-horizontal" action="/ingredients">
-                <div class="form-group text-right" *ngFor="let ctrl of formControls()">
+                <div class="form-group text-right" *ngFor="let col of columns">
                   <div class="row">
-                    <div class="col-sm-5 text-right">{{ ctrl }}:</div >
+                    <div class="col-sm-5 text-right">{{ col.header }}:</div >
                     <div class="col-sm-7">
-                      <input [formControl]="form.get(ctrl)" type="text" class="form-control" id="inpt_{{ ctrl }}" placeholder="">
+                      <input [formControl]="form.get(col.field)" type="text" class="form-control" id="inpt_{{ col.field }}" placeholder="">
                     </div>
                   </div>
                 </div>
