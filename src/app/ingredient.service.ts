@@ -15,6 +15,7 @@ const httpOptions = {
 })
 export class IngredientService {
   private url = 'http://localhost:8080/ingredients';
+  private searchUrl = 'http://localhost:8080/search?';
 
   constructor(
     private messageService: MessageService,
@@ -22,7 +23,6 @@ export class IngredientService {
   ) { }
 
   getIngredients(): Observable<Ingredient[]> {
-
     return this.http.get<Ingredient[]>(this.url)
       .pipe(
         catchError(this.handleError('getIngredients', [])),
@@ -47,7 +47,6 @@ export class IngredientService {
       );
   }
 
-
   deleteIngredient(id: number): Observable<any> {
     return this.http.delete(`${this.url}/${id}`)
       .pipe(
@@ -56,6 +55,12 @@ export class IngredientService {
       );
   }
 
+  searchIngredients(term: string): Observable<Ingredient[]> {
+    return this.http.get<Ingredient[]>(`${this.searchUrl}q=ingredients&name=${term}`).pipe(
+      catchError(this.handleError('searchIngredients', [])),
+      tap(_ => this.log(`search for ingredient term = ${term}`))
+    );
+  }
 
   private log(message: string) {
     this.messageService.add(`IngredientService: ${message}`);
@@ -68,5 +73,4 @@ export class IngredientService {
       return of(result as T);
     };
   }
-
 }
