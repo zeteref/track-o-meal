@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MealService } from '../meal.service';
 import { Meal } from '../models/meal';
 import { IngredientService } from '../ingredient.service';
 import { Ingredient } from '../models/ingredient';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { IngredientListComponent } from '../ingredients-list/ingredient-list-component';
 
 @Component({
   selector: 'app-ingredients',
@@ -12,12 +13,15 @@ import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
 })
 export class IngredientsComponent implements OnInit {
 
+  @ViewChild('ingredientsSearch')
+  ingredientsSearch: IngredientListComponent;
+
   constructor(
     private ingredientService: IngredientService,
     private fb: FormBuilder
   ) { }
 
-  ingredients: Ingredient[];
+
   selectedIngredient: Ingredient;
 
   form: FormGroup = this.fb.group({
@@ -36,16 +40,11 @@ export class IngredientsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getIngredients();
+    this.ingredientsSearch.loadIngredients();
     this.form.get('name').valueChanges
       .subscribe(data  => {
         this.selectedIngredient.name = data;
       });
-  }
-
-  getIngredients(): void {
-    this.ingredientService.getIngredients()
-      .subscribe(ingredients => this.ingredients = ingredients);
   }
 
   selectIngredient(ing: Ingredient): void {
@@ -60,8 +59,7 @@ export class IngredientsComponent implements OnInit {
 
   deleteIngredient(ing: Ingredient): void {
     this.ingredientService.deleteIngredient(ing.id).subscribe(() => {
-      const idx = this.ingredients.findIndex(i => i.id === ing.id);
-      this.ingredients.splice(idx, 1);
+      this.ingredientsSearch.deleteCompleted(ing.id);
     });
   }
 
@@ -71,10 +69,14 @@ export class IngredientsComponent implements OnInit {
       this.ingredientService.updateIngredient(ing).subscribe(() => this.selectedIngredient = undefined);
     } else {
       this.ingredientService.addIngredient(ing).subscribe((ret: Ingredient) => {
-        this.ingredients.push(ret);
         this.selectedIngredient = undefined;
+        this.ingredientsSearch.loadIngredients();
       });
     }
+  }
+
+  onCancel(): void {
+    this.selectedIngredient = undefined;
   }
 
   newIngredient(): void {

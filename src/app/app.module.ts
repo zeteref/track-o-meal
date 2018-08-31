@@ -12,6 +12,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { MealSearchComponent } from './meal-search/meal-search.component';
 import { TypeheadBasicComponent } from './typehead-basic/typehead-basic.component';
 import { IngredientsComponent } from './ingredients/ingredients.component';
+import { IngredientListComponent } from './ingredients-list/ingredient-list-component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { IngredientsComponent } from './ingredients/ingredients.component';
     MealSearchComponent,
     TypeheadBasicComponent,
     IngredientsComponent,
+    IngredientListComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,46 +1,16 @@
 <div row>
   <div class="col-sm-8">
-    <div class="row">
-      <div class="col-sm-8">
-        <div class="input-group">
-          <input class="form-control" id="myInput" type="text" placeholder="Search..">
-          <div class="input-group-btn">
-              <span class="btn btn-default">
-                <i class="glyphicon glyphicon-search"></i>
-              </span>
-          </div>
-        </div>
-      </div>
+    <app-ingredient-list #ingredientsSearch
+      (selected)="selectIngredient($event)"
+      (delete)="deleteIngredient($event)">
+    </app-ingredient-list>
+  </div>
+  <div class="col-sm-4">
+    <div class="row pull-right" style="margin-bottom: 8px">
       <div class="col-sm-4 text-right">
         <a class="btn btn-info" (click)="newIngredient()">New ingredient</a>
       </div>
     </div>
-    <div class="row">
-      <div class="col-sm-12">
-        <table class="table table-hover">
-          <thead>
-            <tr>
-              <th *ngFor="let ctrl of formControls()">{{ ctrl }}</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let ingredient of ingredients"
-                [class.active]="selectedIngredient == ingredient">
-              <td *ngFor="let ctrl of formControls()" (click)="selectIngredient(ingredient)">{{ ingredient[ctrl] }}</td>
-              <td>
-                <span (click)="deleteIngredient(ingredient)" class="glyphicon glyphicon-remove"></span>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <ul class="pager">
-          <li class="previous"><a href="#">Previous</a></li>
-          <li class="next"><a href="#">Next</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-4">
     <div class="row">
       <div class="col-sm-12" *ngIf="selectedIngredient">
         <div id="ingredient-details" class="panel panel-default panel-info">
@@ -54,9 +24,10 @@
                   </div>
                 </div>
                 <input type="hidden" [formControl]="form.get('id')">
-                <div class="form-group">
-                  <div class="col-sm-12 text-right">
+                <div class="form-group pull-right">
+                  <div class="col-sm-12 text-right btn-group">
                     <button type="submit" class="btn btn-default" (click)="onSubmit()">Submit</button>
+                    <button type="button" class="btn btn-default" (click)="onCancel()">Cancel</button>
                   </div>
                 </div>
             </form>
