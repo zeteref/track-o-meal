@@ -27,11 +27,11 @@ export class IngredientsComponent implements OnInit {
   form: FormGroup = this.fb.group({
     name: [''],
     calories: [''],
-    sugar: [''],
     protein: [''],
-    fats: [''],
-    carbo: [''],
     veg_protein: [''],
+    carbo: [''],
+    sugar: [''],
+    fats: [''],
     id: ['']
   });
 

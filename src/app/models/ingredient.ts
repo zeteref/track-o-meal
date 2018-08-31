@@ -1,3 +1,4 @@
+
 export class Ingredient {
     id: number;
     name: string;
@@ -6,5 +7,5 @@ export class Ingredient {
     vet_protein: number;
     protein: number;
     carbo: number;
-    fats: number; 
+    fats: number;
 }
