@@ -1,4 +1,9 @@
 <div class="row">
+  <div class ="col text-right mb-4">
+    <button type="button" class="mb-8 btn btn-secondary mb-8" (click)="newIngredient()">New ingredient</button>
+  </div>
+</div>
+<div class="row">
   <div class="col-sm-8">
     <app-ingredient-list #ingredientsSearch
       (selected)="selectIngredient($event)"
@@ -6,11 +11,6 @@
     </app-ingredient-list>
   </div>
   <div class="col-sm-4">
-    <div class="row">
-      <div class="col-sm-12 text-right mb-4">
-        <button type="button" class="mb-8 btn btn-secondary mb-8" (click)="newIngredient()">New ingredient</button>
-      </div>
-    </div>
     <div class="row">
       <div class="col-sm-12" *ngIf="selectedIngredient">
         <div id="ingredient-details" class="card card-default">

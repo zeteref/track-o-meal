@@ -21,7 +21,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let ingredient of ingredients"
-            [class.active]="selectedIngredient == ingredient">
+            [class.table-active]="selectedIngredient == ingredient">
           <td *ngFor="let col of columns" (click)="select(ingredient)">{{ ingredient[col.field] }}</td>
           <td>
             <span (click)="deleteRequest(ingredient)" class="glyphicon glyphicon-remove"></span>
