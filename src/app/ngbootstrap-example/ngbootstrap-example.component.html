@@ -1,0 +1,51 @@
+<div class="container">
+   <ngb-tabset type="pills">
+      <ngb-tab title="Simple">
+         <ng-template ngbTabContent>
+            <p>Star ratings using ng-bootstrap</p>
+                <ngb-rating [(rate)]="currentRate">
+                    <ng-template let-fill="fill">
+                       <span class="star" [class.filled]="fill === 100">&#9733;</span>
+                    </ng-template>
+                </ngb-rating>
+                <hr>
+                <pre>Rate: <b>{{currentRate}}</b></pre>
+         </ng-template>
+      </ngb-tab>
+   <ngb-tab>
+      <ng-template ngbTabTitle><b>Fancy</b> title</ng-template>
+      <ng-template ngbTabContent>
+         <p>Progress bars using ng-bootstrap</p>
+         <p>
+            <ngb-progressbar type="success" [value]="25"></ngb-progressbar>
+         </p>
+         <p>
+            <ngb-progressbar type="info" [value]="50"></ngb-progressbar>
+         </p>
+         <p>
+            <ngb-progressbar type="warning" [value]="75"></ngb-progressbar>
+         </p>
+         <p>
+            <ngb-progressbar type="danger" [value]="100"></ngb-progressbar>
+         </p>
+   </ng-template>
+</ngb-tab>
+<ngb-tab title="Not Disabled">
+   <ng-template ngbTabContent>
+      <p>Popovers that dismiss on the second click</p>
+      <button type="button" class="btn btn-secondary" placement="top" ngbPopover="Vivamus sagittis lacus vel augue laoreet rutrum faucibus." popoverTitle="Popover on top">
+      Popover on top
+      </button>
+      <button type="button" class="btn btn-secondary" placement="right" ngbPopover="Vivamus sagittis lacus vel augue laoreet rutrum faucibus." popoverTitle="Popover on right">
+      Popover on right
+      </button>
+      <button type="button" class="btn btn-secondary" placement="bottom" ngbPopover="Vivamus sagittis lacus vel augue laoreet rutrum faucibus." popoverTitle="Popover on bottom">
+      Popover on bottom
+      </button>
+      <button type="button" class="btn btn-secondary" placement="left" ngbPopover="Vivamus sagittis lacus vel augue laoreet rutrum faucibus." popoverTitle="Popover on left">
+      Popover on left
+      </button>
+   </ng-template>
+ </ngb-tab>
+</ngb-tabset>
+</div>
